@@ -15,15 +15,35 @@
   | ```su - ansible```                 | ```su - ansible```                    |
   | ```ssh worker node Private IP```<br>password:```1234```       |                          |
 
-  # Generating SSH Key Gen
+ # Generating SSH Key and Setting Up Access
+
+Follow these steps to generate an SSH key on the Ansible-Master and set up access to the Worker node.
+
+## 1. Generate SSH Key on Ansible-Master
+
+Open a terminal on the Ansible-Master and execute the following command:
+
   ### Ansible-Master
-  ```ssh-keygen```<br>
-  Enter<br>Enter<br>Enter<br>
-  ```ls -a```<br>
-  ```cd .ssh```<br>```cat id_rsa``` >>Copy the generated key<br>
+  ```ssh-keygen```
+  ### Press Enter three times to accept the default options.
+  Enter<br>Enter<br>Enter
+  ### List all files in the current directory to verify the creation of the key
+  ```ls -a```
+  ### Navigate to the .ssh directory
+  ```cd .ssh```
+  ### View the contents of the generated SSH key
+  ```cat id_rsa``` >>Note: Copy the entire contents of the key displayed.
+## 2. Copy the SSH Key to the Worker Node
   ```ssh-copy-id ansible@worker node Private IP```<br>```password: 1234```
-  <br> cd ..<br>```ssh worker node Private IP``` >>to check accesibility between Master and Worker Node<br>
-  ```exit```<br>```ansible demo -m ping```
+## 3. Verify SSH Access to the Worker Node
+  ### Return to the previous directory
+  ```cd ..```
+  ### Test the SSH access to the Worker node
+  ```ssh worker node Private IP``` >>This command checks the accessibility between the Ansible-Master and the Worker node.
+  ### Exit the SSH session
+  ```exit```
+## 4. Test Ansible Connectivity To ensure that Ansible can communicate with the Worker node
+  ```ansible demo -m ping```
   
 
 
