@@ -5,7 +5,7 @@
   |--------------------------------------|------------------------------------------|
   | **1.Ansible Installation**           |                |
   | ```sudo amazon-linux-extras install ansible2 -y```            |                 |
-  | ```vi /etc/ansible/hosts```<br>```[demo]```<br>```worker node Private IP```  |    |
+  | ```vi /etc/ansible/hosts```>>Line No:12<br>```[demo]```<br>```worker node Private IP```  |    |
   | ```vi /etc/ansible/ansible.cfg```<br>removing ```#```<br>```inventory =/etc/ansible/hosts```<br>```sudo_user=root```           |                  |
   | ```useradd ansible```                 | ```useradd ansible```                    |
   | ```passwd ansible```                 | ```passwd ansible```                    |
