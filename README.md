@@ -88,6 +88,20 @@ ansible <group-name> -a "<arguments>"
        ansible demo -b -a "yum remove httpd -y"
        ansible mallick -b -a "yum remove nginx -y"
        ```
+# Ansible Module Commands
+## Introduction
+This guide provides an overview of commonly used Ansible modules and their commands. These modules are essential building blocks for managing infrastructure and automation tasks with Ansible.
+
+---
+
+## General Syntax
+```bash
+ansible <target> -m <module> -a "<arguments>" [options]
+```
+- `<target>`: Inventory group or hostname.
+- `<module>`: Module name (e.g., `ping`, `copy`, `yum`).
+- `<arguments>`: Arguments required for the module.
+- `[options]`: Additional flags like -b for privilege escalation.
 
        
 
