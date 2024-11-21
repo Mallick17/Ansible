@@ -65,6 +65,3 @@ Open a terminal on the Ansible-Master and execute the following command:
   ```sh
   ansible demo -m ping
 ```
-  
-
-
