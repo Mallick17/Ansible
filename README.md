@@ -15,3 +15,4 @@ This guide demonstrates how to use Ansible ad-hoc commands to manage remote serv
 
    [mallick]
    192.168.1.20 ansible_user=ec2-user ansible_ssh_private_key_file=/path/to/key
+3. **Remote Server Access**: Rnsure you can SSH into the servers with `ssh@private-ip` with password or with `ssh-keygen`.
