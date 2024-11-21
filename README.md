@@ -22,6 +22,78 @@ This guide demonstrates how to use Ansible ad-hoc commands to manage remote serv
 **An Ansible ad hoc command uses the /usr/bin/ansible command-line tool to automate a single task on one or more managed nodes. ad hoc commands are quick and easy, but they are not reusable.**
 ```ini
 ansible <group-name> -a "<arguments>"
+```
+
+1. **Ping Test**
+   - To check if Ansible can reach the hosts
+     ```ini
+     ansible demo -m ping
+     ansible mallick -m ping
+     ```
+   
+2. **File operations**
+   - Create a File:
+     ```ini
+     ansible demo -a "touch sample.txt"
+     ansible mallick -a "touch index.html"
+     ```
+   - List Files:
+     ```ini
+     ansible demo -a "ls"
+     ansible mallick -a "ls"
+     ```
+3. **Install Packages**
+   - Install Apache
+     ```ini
+     ansible demo -a "sudo yum install httpd -y"
+     ```
+   - Install NGINX
+     ```ini
+     ansible mallick -a "sudo amazon-linux-extras install nginx1 -y"
+     ```
+4. **Service Management**
+   - Check Service Status
+     ```ini
+     ansible demo -a "sudo systemctl status httpd"
+     ansible mallick -a "sudo systemctl status nginx"
+      ```
+   - Start Services
+     ```ini
+     ansible demo -a "sudo systemctl start httpd"
+     ansible mallick -a "sudo systemctl start nginx"
+     ```
+   - Stop Services
+     ```ini
+     ansible demo -a "sudo systemctl stop httpd"
+     ansible mallick -a "sudo systemctl stop nginx"
+     ```
+5. **Uninstall Packages**
+   - Remove Apache
+     ```ini
+     ansible demo -a "sudo yum remove httpd -y"
+     ```
+   - Remove NGINX
+     ```ini
+     ansible mallick -a "sudo yum remove nginx -y"
+     ```
+6. **Become Sudo User(Sudo Privileged or Master Permisssions)**
+   - **Use `-b` for privilege escalation.**
+     - Install
+       ```ini
+       ansible demo -b -a "yum install httpd -y"
+       ansible mallick -b -a "amazon-linux-extras install nginx1 -y"
+       ```
+     - Remove
+       ```ini
+       ansible demo -b -a "yum remove httpd -y"
+       ansible mallick -b -a "yum remove nginx -y"
+       ```
+
+       
+
+     
+
+
 
 
 
