@@ -116,7 +116,46 @@ ansible-playbook stophttpd.yml
 ```
 - Here:
   - when: Ensures that Apache is installed only on the appropriate operating system family (Debian or RedHat).
+## Loops in Playbooks
+- You can use loops to iterate over a list of items and perform the same task on each item.
+```yaml
+---
+- name: Install multiple packages
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install packages
+      yum:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - vim
+        - curl
+        - wget
+``` 
+- **Note**: The loop iterates over the list of packages and installs each one.
+## Handlers in Playbooks
+- Handlers are special tasks that are only executed when notified by another task. Handlers are usually used to restart services after making changes.
+```yaml
+---
+- name: Configure and restart Nginx
+  hosts: all
+  become: yes
+  connection: ssh
+  tasks:
+    - name: Update Nginx configuration
+      copy:
+        src: nginx.conf
+        dest: /etc/nginx/nginx.conf
+      notify:
+        - restart nginx
 
+  handlers:
+    - name: restart nginx
+      service:
+        name: nginx
+        state: restarted
+```
 
 
 
