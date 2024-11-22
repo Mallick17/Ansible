@@ -196,8 +196,8 @@ ansible <target> -m <module> -a "<arguments>" [options]
 12. **Debug Module**
     - Prints debug information for troubleshooting.
       ```ini
-      ansible all -m debug -a "msg='Hello, Ansible!'"            ## Prints 'Hello, Ansible!' on all hosts
-      ansible demo -m debug -a "msg='Debugging Demo Group!'"     ## Prints a debug message for demo hosts
+      ansible all -m debug -a "msg='Hello, Ansible'"            ## Prints 'Hello, Ansible!' on all hosts
+      ansible demo -b -m debug -a 'msg="Hello, Ansible"'     ## Prints a debug message for demo hosts
       ```
 13. **Cron Module**
     - Manages cron jobs.
