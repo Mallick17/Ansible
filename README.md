@@ -16,7 +16,6 @@
   2. **hosts**: Defines the target machines (groups or individual hosts from the inventory file eg. demo,mallick).
   3. **become**: If set to `yes`, it escalates privileges (uses `sudo`).
   4. **tasks**: A list of tasks to be executed. Each task uses a module (e.g., `yum`, `apt`, `file`, etc.) to perform an action.
-<br>
 ---
 ### A playbook to check connection with worker nodes weather it is reachable or not by using target section in the file name `target.yml`.
 
