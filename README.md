@@ -1,4 +1,4 @@
-# Ansible Installation &amp; Configuration along with Commands
+# Ansible Installation & Configuration 
 
 # Ansible Installation & Configuration between Master & Worker Node
   | **Ansible-Master**                    | **Ansible-Worker**                        |
