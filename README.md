@@ -98,7 +98,7 @@ ansible-playbook stophttpd.yml
 ```yaml
 ---
 - name: Install and start httpd service
-  hosts: all
+  hosts: mallick
   user: ansible
   become: yes
   connection: ssh
