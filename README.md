@@ -132,7 +132,8 @@ ansible <target> -m <module> -a "<arguments>" [options]
 4. **Copy Module**
    - Copies files from the control node to remote hosts.
      ```ini
-     ansible all -m copy -a "src=/path/to/local/file dest=/path/to/remote/file"  ## Copies file to all hosts
+     [ansible@master ~]$vi local.txt
+     ansible all -b -m copy -a "src=/home/ansible/local.txt dest=/home/ansible/ansiblefolder/local.txt"
      ansible demo -m copy -a "src=sample.txt dest=/home/demo/sample.txt"         ## Copies 'sample.txt' to demo hosts
      ```
 5. **File Module**
