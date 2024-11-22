@@ -156,6 +156,12 @@ ansible-playbook stophttpd.yml
         name: nginx
         state: restarted
 ```
+- Note:
+  - The notify keyword tells Ansible to notify the handler (`restart nginx`) when the Update Nginx configuration task is successful.
+  - The handler restarts Nginx to apply the changes.
+---
+### A script to install service, once it is installed it has to botify to start the service by using handlers section.
+
 
 
 
