@@ -68,3 +68,23 @@ Open a terminal on the Ansible-Master and execute the following command:
 ```
 ---
 # Encryption & Decryption of Scripts
+1. **Encrypting a File**
+```ini
+[ansible@master ~]$ ansible-vault encrypt handlers.yml
+New Vault password: 1234
+Confirm New Vault password: 1234
+Encryption successful
+```
+- **Purpose:**
+  - Encrypt the `handlers.yml` file to protect sensitive information (e.g., API keys, passwords).
+- **Process:**
+  - You are prompted to enter a Vault password. This password is required for viewing, editing, or decrypting the file later.
+  - After encryption, the file content becomes unreadable without the Vault password.
+ ```sh
+ [ansible@master ~]$ vi handlers.yml ##to check the encrypted message or file.
+ ```
+
+
+
+
+
