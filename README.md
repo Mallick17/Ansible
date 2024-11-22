@@ -88,7 +88,7 @@ ansible <group-name> -a "<arguments>"
        ansible demo -b -a "yum remove httpd -y"
        ansible mallick -b -a "yum remove nginx -y"
        ```
-# Ansible Module Commands
+# Ansible: Module Commands
 ## Introduction
 Module commands are reuseable commands to execute in  the worker node. These modules are essential building blocks for managing infrastructure and automation tasks with Ansible.
 
