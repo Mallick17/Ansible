@@ -189,8 +189,9 @@ ansible <target> -m <module> -a "<arguments>" [options]
 11. **Git Module**
     - Clones or updates a repository from Git.
       ```ini
-      ansible all -m git -a "repo=https://github.com/example/repo.git dest=/tmp/repo" ## Clones a repository to all hosts
-      ansible demo -m git -a "repo=https://github.com/example/repo.git dest=/tmp/repo version=main" ## Clones the main branch
+      ansible all -b -m yum -a "name=git state=present"
+      ansible all -m git -a "repo=https://github.com/Mallick17/Ansible dest=/home/ansible/ansiblefolder" ## Clones a repository to all hosts & the folder should be empty.
+      ansible demo -m git -a "repo=https://github.com/Mallick17/Ansible dest=/home/ansible/codedeploy version=Ansible_Commands-&-Playbook" ## Clones the main branch & the folder should be empty.
       ```
 12. **Debug Module**
     - Prints debug information for troubleshooting.
