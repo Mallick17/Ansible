@@ -73,6 +73,50 @@ ansible-playbook stophttpd.yml --check
 ansible-playbook stophttpd.yml
 ```
 ---
+## Variables in Playbooks
+- We can define variables to use in our playbooks. This allows for flexibility and customization.
+```yml
+---
+- name: Install and configure Git
+  hosts: all
+  become: yes
+  vars:
+    git_user: "admin"
+    git_email: "admin@example.com"
+  tasks:
+    - name: Install Git
+      yum:
+        name: git
+        state: present
+
+    - name: Configure Git user
+      command: git config --global user.name "{{ git_user }}"
+    - name: Configure Git email
+      command: git config --global user.email "{{ git_email }}"
+```
+## Conditional Execution in Playbooks
+- You can execute tasks conditionally using the `when` statement.
+```yaml
+---
+- name: Install Apache only on Debian-based systems
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install Apache (Debian)
+      apt:
+        name: apache2
+        state: present
+      when: ansible_os_family == "Debian"
+
+    - name: Install Apache (RedHat)
+      yum:
+        name: httpd
+        state: present
+      when: ansible_os_family == "RedHat"
+```
+- Here:
+  - when: Ensures that Apache is installed only on the appropriate operating system family (Debian or RedHat).
+
 
 
 
