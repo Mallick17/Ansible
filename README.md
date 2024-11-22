@@ -112,9 +112,11 @@ ansible <target> -m <module> -a "<arguments>" [options]
      ansible mallick -m ping   ##It tests connectivity in the mallick group hosts.
      ```
 2. **Command Module**
-   - Executes commands on remote hosts (does not use a shell).
-     ```ini
-     ansible all -m command -a "uptime"
+   - Executes commands on remote hosts without using a shell. Use it for simple commands where no environment variables, pipes, or redirections are needed.
+     ```bash
+     ansible all -m command -a "uptime"         ## Retrieves uptime for all hosts
+     ansible demo -b -m command -a "uptime"    ## Retrieves uptime for demo group with sudo privileges
+     ansible mallick -b -m command -a "uptime" ## Retrieves uptime for mallick group with sudo privileges
      ```
 3. **Shell Module**
    - Executes shell commands on remote hosts.
