@@ -42,6 +42,61 @@
     - name: start httpd service
       command: systemctl start httpd
 ```
+- Once we have created the playbook, we can run it using the `ansible-playbook` command
+```sh
+ansible-playbook starthttpd.yml --check
+ansible-playbook starthttpd.yml
+```
 
 ### A ansible-playbook script to stop & remove httpd service in the worker nodes in the file name `stophttpd.yml`.
 ```yaml
+---
+- name: to check targets
+  hosts: all
+  user: ansible
+  become: yes
+  connection: ssh
+  tasks:
+    - name: stop httpd service
+      command: systemctl stop httpd
+    - name: uninstall httpd
+      command: yum remove httpd -y
+```
+- Once we have created the playbook, we can run it using the `ansible-playbook` command
+```sh
+ansible-playbook stophttpd.yml --check
+ansible-playbook stophttpd.yml
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
