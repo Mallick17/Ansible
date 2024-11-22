@@ -94,6 +94,11 @@ ansible-playbook stophttpd.yml
     - name: Configure Git email
       command: git config --global user.email "{{ git_email }}"
 ```
+- Playbook to install httpd and to start the httpd service using variables
+```yaml
+
+```
+---
 ## Conditional Execution in Playbooks
 - You can execute tasks conditionally using the `when` statement.
 ```yaml
@@ -116,6 +121,7 @@ ansible-playbook stophttpd.yml
 ```
 - Here:
   - when: Ensures that Apache is installed only on the appropriate operating system family (Debian or RedHat).
+---
 ## Loops in Playbooks
 - You can use loops to iterate over a list of items and perform the same task on each item.
 ```yaml
@@ -134,8 +140,26 @@ ansible-playbook stophttpd.yml
         - wget
 ``` 
 - **Note**: The loop iterates over the list of packages and installs each one.
+---
 ## Handlers in Playbooks
 - Handlers are special tasks that are only executed when notified by another task. Handlers are usually used to restart services after making changes.
+### A script to install service, once it is installed it has to botify to start the service by using handlers section.
+```yaml
+---
+- name: to check targets
+  hosts: mallick
+  user: ansible
+  become: yes
+  connection: ssh
+  tasks:
+    - name: install nginx
+      shell: yum install nginx -y
+      notify: start nginx service
+  handlers:
+    - name: start nginx service
+      shell: systemctl start nginx
+```
+- And then to configure and restart the nginx service.
 ```yaml
 ---
 - name: Configure and restart Nginx
@@ -160,7 +184,6 @@ ansible-playbook stophttpd.yml
   - The notify keyword tells Ansible to notify the handler (`restart nginx`) when the Update Nginx configuration task is successful.
   - The handler restarts Nginx to apply the changes.
 ---
-### A script to install service, once it is installed it has to botify to start the service by using handlers section.
 
 
 
