@@ -1,0 +1,11 @@
+---
+- name: to check targets
+  hosts: demo, mallick
+  user: ansible
+  become: yes
+  connection: ssh
+  tasks:
+    - name: install httpd
+      command: yum install httpd -y
+    - name: start httpd service
+      command: systemctl start httpd

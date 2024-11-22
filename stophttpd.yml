@@ -1,0 +1,11 @@
+---
+- name: to check targets
+  hosts: all
+  user: ansible
+  become: yes
+  connection: ssh
+  tasks:
+    - name: stop httpd service
+      command: systemctl stop httpd
+    - name: uninstall httpd
+      command: yum remove httpd -y

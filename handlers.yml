@@ -1,0 +1,13 @@
+---
+- name: to check targets
+  hosts: mallick
+  user: ansible
+  become: yes
+  connection: ssh
+  tasks:
+    - name: install nginx
+      shell: yum install nginx -y
+      notify: start nginx service
+  handlers:
+    - name: start nginx service
+      shell: systemctl start nginx

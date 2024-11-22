@@ -1,0 +1,18 @@
+---
+- name: Install and start httpd service
+  hosts: mallick
+  user: ansible
+  become: yes
+  connection: ssh
+  vars:
+    pkg_name: httpd
+  tasks:
+    - name: install httpd
+      yum:
+        name: "{{ pkg_name }}"
+        state: present
+
+    - name: start httpd service
+      service:
+        name: "{{ pkg_name }}"
+        state: started

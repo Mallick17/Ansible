@@ -1,0 +1,16 @@
+---
+- name: Install Apache only on Debian-based systems
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install Apache (Debian)
+      apt:
+        name: apache2
+        state: present
+      when: ansible_os_family == "Debian"
+
+    - name: Install Apache (RedHat)
+      yum:
+        name: httpd
+        state: present
+      when: ansible_os_family == "RedHat"

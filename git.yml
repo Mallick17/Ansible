@@ -1,0 +1,17 @@
+---
+- name: Install and configure Git
+  hosts: all
+  become: yes
+  vars:
+    git_user: "Mallick17"
+    git_email: "gyanaranjanmallick444@gmail.com"
+  tasks:
+    - name: Install Git
+      yum:
+        name: git
+        state: present
+
+    - name: Configure Git user
+      command: git config --global user.name "{{ git_user }}"
+    - name: Configure Git email
+      command: git config --global user.email "{{ git_email }}"
