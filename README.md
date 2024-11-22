@@ -122,6 +122,10 @@ ansible <target> -m <module> -a "<arguments>" [options]
    - Executes shell commands on remote hosts.
      ```ini
      ansible all -m shell -a "echo Hello World > /tmp/hello.txt"  ## Creates a file with 'Hello World' text
+     ansible all -m shell -a "echo Hello World > //home/ansible/hello.txt"
+     ansible demo -m shell -a "pwd"
+     ansible mallick -m shell -a "ls"
+     ansible all -m shell -a "mkdir ansiblefolder"
      ansible demo -m shell -a "pwd"                              ## Prints the working directory on demo group hosts
      ansible mallick -m shell -a "ls"                            ## Lists files in the mallick group hosts
      ```
