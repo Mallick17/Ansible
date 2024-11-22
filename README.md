@@ -28,6 +28,12 @@
   become: yes
   connection: ssh
 ```
+- Once we have created the playbook, we can run it using the `ansible-playbook` command
+```sh
+ansible-playbook target.yml --check
+ansible-playbook target.yml
+```
+
 ### A ansible-playbook script to install & start httpd service in the worker nodes in the file name `starthttpd.yml`.
 ```yaml
 ---
