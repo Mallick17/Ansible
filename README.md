@@ -28,5 +28,20 @@
   become: yes
   connection: ssh
 ```
-### A ansible-playbook script to install & start httpd service in the worker nodes.
+### A ansible-playbook script to install & start httpd service in the worker nodes in the file name `starthttpd.yml`.
+```yaml
+---
+- name: to check targets
+  hosts: demo, mallick
+  user: ansible
+  become: yes
+  connection: ssh
+  tasks:
+    - name: install httpd
+      command: yum install httpd -y
+    - name: start httpd service
+      command: systemctl start httpd
+```
+
+### A ansible-playbook script to stop & remove httpd service in the worker nodes in the file name `stophttpd.yml`.
 ```yaml
