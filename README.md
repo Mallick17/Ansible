@@ -80,10 +80,15 @@ Encryption successful
 - **Process:**
   - You are prompted to enter a Vault password. This password is required for viewing, editing, or decrypting the file later.
   - After encryption, the file content becomes unreadable without the Vault password.
+- **Result**
  ```sh
  [ansible@master ~]$ vi handlers.yml ##to check the encrypted message or file.
  ```
-
+2. **Viewing an Encrypted File**
+```ini
+[ansible@master ~]$ ansible-vault view handlers.yml
+Vault password:
+```
 
 
 
