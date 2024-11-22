@@ -96,7 +96,24 @@ ansible-playbook stophttpd.yml
 ```
 - Playbook to install httpd and to start the httpd service using variables
 ```yaml
+---
+- name: Install and start httpd service
+  hosts: all
+  user: ansible
+  become: yes
+  connection: ssh
+  vars:
+    pkg_name: httpd
+  tasks:
+    - name: install httpd
+      yum:
+        name: "{{ pkg_name }}"
+        state: present
 
+    - name: start httpd service
+      service:
+        name: "{{ pkg_name }}"
+        state: started
 ```
 ---
 ## Conditional Execution in Playbooks
