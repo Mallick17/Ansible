@@ -67,29 +67,69 @@ Open a terminal on the Ansible-Master and execute the following command:
   ansible demo -m ping
 ```
 ---
-# Encryption & Decryption of Scripts
-1. **Encrypting a File**
-```ini
-[ansible@master ~]$ ansible-vault encrypt handlers.yml
-New Vault password: 1234
-Confirm New Vault password: 1234
-Encryption successful
-```
-- **Purpose:**
-  - Encrypt the `handlers.yml` file to protect sensitive information (e.g., API keys, passwords).
-- **Process:**
-  - You are prompted to enter a Vault password. This password is required for viewing, editing, or decrypting the file later.
-  - After encryption, the file content becomes unreadable without the Vault password.
-- **Result**
- ```sh
- [ansible@master ~]$ vi handlers.yml ##to check the encrypted message or file.
- ```
-2. **Viewing an Encrypted File**
-```ini
-[ansible@master ~]$ ansible-vault view handlers.yml
-Vault password:
-```
+# Ansible Vault: Encrypting and Decrypting Files
 
+Ansible Vault is a powerful tool to securely manage sensitive data such as passwords, API keys, and other secrets in Ansible projects.
 
+## Commands for Encryption and Decryption
 
+1. **Encrypt a File**
+   - Secures the content of a file, making it unreadable without a Vault password.
+     ```bash
+     ansible-vault encrypt <filename>         ## Encrypts the specified file
+     ansible-vault encrypt secrets.yml        ## Example: Encrypts secrets.yml
+     ```
+   - You will be prompted to enter a new Vault password.
 
+2. **View an Encrypted File**
+   - Displays the content of an encrypted file in plaintext without decrypting it.
+     ```bash
+     ansible-vault view <filename>            ## Views the content of the specified file
+     ansible-vault view secrets.yml           ## Example: Views the content of secrets.yml
+     ```
+   - Requires the Vault password to access the content.
+
+3. **Edit an Encrypted File**
+   - Opens an encrypted file in an editor, allowing modifications. The file is automatically re-encrypted upon saving.
+     ```bash
+     ansible-vault edit <filename>            ## Edits the specified file securely
+     ansible-vault edit secrets.yml           ## Example: Edits secrets.yml
+     ```
+   - Requires the Vault password to edit the file.
+
+4. **Decrypt a File**
+   - Removes encryption from the file, making it readable in plaintext.
+     ```bash
+     ansible-vault decrypt <filename>         ## Decrypts the specified file
+     ansible-vault decrypt secrets.yml        ## Example: Decrypts secrets.yml
+     ```
+   - Requires the Vault password to perform decryption.
+
+---
+
+## Automating Vault Password Handling
+
+1. **Using a Password File**
+   - Create a file to store the Vault password securely:
+     ```bash
+     echo "your_password" > /path/to/vault_password_file
+     ```
+   - Set the password file in `ansible.cfg`:
+     ```ini
+     [defaults]
+     vault_password_file = /path/to/vault_password_file
+     ```
+
+2. **Run Playbooks with Automation**
+   - Specify the Vault password file when running playbooks:
+     ```bash
+     ansible-playbook playbook.yml --vault-password-file /path/to/vault_password_file
+     ```
+
+---
+
+## Example Workflow
+
+1. **Encrypt a File**:
+   ```bash
+   ansible-vault encrypt credentials.yml
