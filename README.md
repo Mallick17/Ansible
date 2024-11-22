@@ -1,7 +1,7 @@
 # Ansible: Ad-hoc Commands
 
 ## Introduction
-This guide demonstrates how to use Ansible ad-hoc commands to manage remote servers effectively. Ad-hoc commands are simple, one-liner instructions that allow you to perform tasks quickly without writing a playbook.
+Ansible ad-hoc commands manage remote servers effectively. Ad-hoc commands are simple, one-liner instructions that allow you to perform tasks quickly without writing a playbook.
 
 ---
 
@@ -90,7 +90,7 @@ ansible <group-name> -a "<arguments>"
        ```
 # Ansible Module Commands
 ## Introduction
-This guide provides an overview of commonly used Ansible modules and their commands. These modules are essential building blocks for managing infrastructure and automation tasks with Ansible.
+Module commands are reuseable commands to execute in  the worker node. These modules are essential building blocks for managing infrastructure and automation tasks with Ansible.
 
 ---
 
@@ -102,6 +102,37 @@ ansible <target> -m <module> -a "<arguments>" [options]
 - `<module>`: Module name (e.g., `ping`, `copy`, `yum`).
 - `<arguments>`: Arguments required for the module.
 - `[options]`: Additional flags like -b for privilege escalation.
+
+## Commonly used Ansible Modules and their Commands.
+1. **Ping Module**
+   - Tests connectivity between the Ansible control node and managed hosts.
+     ```ini
+     ansible all -m ping   ##It tests connectivity in all the hosts
+     ansible demo -m ping   ##It tests connectivity in the demo group hosts.
+     ansible mallick -m ping   ##It tests connectivity in the mallick group hosts.
+     ```
+2. **Command Module**
+   - Executes commands on remote hosts (does not use a shell).
+     ```ini
+     ansible all -m command -a "uptime"
+     ```
+3. **Shell Module**
+   - Executes shell commands on remote hosts.
+     ```ini
+     ansible all -m shell -a "echo Hello World > /tmp/hello.txt"  ## Creates a file with 'Hello World' text
+     ansible demo -m shell -a "pwd"                              ## Prints the working directory on demo group hosts
+     ansible mallick -m shell -a "ls"                            ## Lists files in the mallick group hosts
+     ```
+4. **Copy Module**
+   - Copies files from the control node to remote hosts.
+     ```ini
+     ansible all -m copy -a "src=/path/to/local/file dest=/path/to/remote/file"  ## Copies file to all hosts
+     ansible demo -m copy -a "src=sample.txt dest=/home/demo/sample.txt"         ## Copies 'sample.txt' to demo hosts
+     ```
+
+
+   
+
 
        
 
