@@ -129,6 +129,86 @@ ansible <target> -m <module> -a "<arguments>" [options]
      ansible all -m copy -a "src=/path/to/local/file dest=/path/to/remote/file"  ## Copies file to all hosts
      ansible demo -m copy -a "src=sample.txt dest=/home/demo/sample.txt"         ## Copies 'sample.txt' to demo hosts
      ```
+5. **File Module**
+   - Manages file and directory properties.
+     ```ini
+     ansible all -m file -a "path=/tmp/sample.txt mode=0644"        ## Sets permissions for the file
+     ansible demo -m file -a "path=/tmp/new_directory state=directory"  ## Creates a directory on demo hosts
+     ansible mallick -m file -a "path=/tmp/old_file state=absent"   ## Removes a file on mallick hosts
+     ```
+6. **Yum Module**
+   - Manages packages on RHEL-based systems.
+     ```ini
+     ansible demo -b -m yum -a "name=httpd state=present"  ## Installs Apache HTTP server on demo hosts
+     ansible mallick -b -m yum -a "name=nginx state=absent" ## Removes NGINX from mallick hosts
+     ansible all -b -m yum -a "name=* state=latest"        ## Updates all packages on all hosts
+     ```
+7. **Apt Module**
+   - Manages packages on Debian-based systems.
+     ```ini
+     ansible demo -b -m apt -a "name=nginx state=present"  ## Installs NGINX on demo hosts
+     ansible mallick -b -m apt -a "name=nginx state=absent"## Removes NGINX from mallick hosts
+     ansible all -b -m apt -a "update_cache=yes"           ## Updates the package cache on all hosts
+     ```
+8. **Service Module**
+   - Manages services on remote hosts.
+     ```ini
+     ansible demo -b -m service -a "name=httpd state=started"   ## Starts Apache on demo hosts
+      ansible mallick -b -m service -a "name=nginx state=stopped" ## Stops NGINX on mallick hosts
+      ansible demo -b -m service -a "name=httpd enabled=yes"     ## Enables Apache on demo hosts to start on boot
+     ```
+9. **User Module**
+    - Manages user accounts
+      ```ini
+      ansible all -m user -a "name=newuser state=present"        ## Creates a new user on all hosts
+      ansible mallick -m user -a "name=olduser state=absent"     ## Deletes a user on mallick hosts
+      ```
+10. **Setup Module**
+    - Gathers facts about remote hosts.
+      ```ini
+      ansible all -m setup                                       ## Displays all facts about all hosts
+      ansible demo -m setup -a "filter=ansible_distribution"    ## Displays OS distribution info for demo hosts
+      ansible mallick -m setup -a "filter=ansible_memtotal_mb"  ## Displays total memory info for mallick hosts
+      ```
+11. **Git Module**
+    - Clones or updates a repository from Git.
+      ```ini
+      ansible all -m git -a "repo=https://github.com/example/repo.git dest=/tmp/repo" ## Clones a repository to all hosts
+      ansible demo -m git -a "repo=https://github.com/example/repo.git dest=/tmp/repo version=main" ## Clones the main branch
+      ```
+12. **Debug Module**
+    - Prints debug information for troubleshooting.
+      ```ini
+      ansible all -m debug -a "msg='Hello, Ansible!'"            ## Prints 'Hello, Ansible!' on all hosts
+      ansible demo -m debug -a "msg='Debugging Demo Group!'"     ## Prints a debug message for demo hosts
+      ```
+13. **Cron Module**
+    - Manages cron jobs.
+      ```ini
+      ansible all -m cron -a "name='Backup Job' minute=0 hour=2 job='/usr/bin/backup.sh'" ## Adds a cron job
+      ansible demo -m cron -a "name='Backup Job' state=absent" ## Removes the cron job on demo hosts
+      ```
+14. **Stat Module**
+    - Retrieves file or directory metadata.
+      ```ini
+      ansible all -m stat -a "path=/tmp/sample.txt"              ## Checks metadata for a file on all hosts
+      ansible mallick -m stat -a "path=/tmp/important.log"       ## Checks metadata for a file on mallick hosts
+      ```
+15. **Privilege Escalation**
+    - Use the -b option to execute commands requiring sudo privileges.
+      ```ini
+      ansible demo -b -m yum -a "name=httpd state=present"       ## Installs Apache with sudo privileges
+      ansible mallick -b -m shell -a "systemctl restart nginx"  ## Restarts NGINX with sudo privileges
+      ```
+
+
+
+
+
+
+
+
+
 
 
    
