@@ -28,4 +28,5 @@
   become: yes
   connection: ssh
 ```
-
+### A ansible-playbook script to install & start httpd service in the worker nodes.
+```yaml
