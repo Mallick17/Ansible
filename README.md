@@ -208,8 +208,8 @@ ansible <target> -m <module> -a "<arguments>" [options]
 14. **Stat Module**
     - Retrieves file or directory metadata.
       ```ini
-      ansible all -m stat -a "path=/tmp/sample.txt"              ## Checks metadata for a file on all hosts
-      ansible mallick -m stat -a "path=/tmp/important.log"       ## Checks metadata for a file on mallick hosts
+      ansible all -m stat -a "path=/home/ansible/hello.txt"              ## Checks metadata for a file on all hosts
+      ansible mallick -m stat -a "path=/home/ansible/ansiblefolder/README.md"       ## Checks metadata for a file on mallick hosts
       ```
 15. **Privilege Escalation**
     - Use the -b option to execute commands requiring sudo privileges.
