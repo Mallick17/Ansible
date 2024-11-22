@@ -139,7 +139,7 @@ ansible <target> -m <module> -a "<arguments>" [options]
 5. **File Module**
    - Manages file and directory properties.
      ```ini
-     ansible all -m file -a "path=/tmp/sample.txt mode=0644"        ## Sets permissions for the file
+     ansible all -m file -a "path=/home/ansible/hello.txt mode=0644"        ## Sets permissions for the file
      ansible all -m shell -a "ls -l"
      ansible all -m file -a "path=/home/ansible/hello.txt mode=0700"
      ansible all -m shell -a "ls -l"
