@@ -140,8 +140,16 @@ ansible <target> -m <module> -a "<arguments>" [options]
    - Manages file and directory properties.
      ```ini
      ansible all -m file -a "path=/tmp/sample.txt mode=0644"        ## Sets permissions for the file
-     ansible demo -m file -a "path=/tmp/new_directory state=directory"  ## Creates a directory on demo hosts
-     ansible mallick -m file -a "path=/tmp/old_file state=absent"   ## Removes a file on mallick hosts
+     ansible all -m shell -a "ls -l"
+     ansible all -m file -a "path=/home/ansible/hello.txt mode=0700"
+     ansible all -m shell -a "ls -l"
+     ansible all -m file -a "path=/home/ansible/hello.txt mode=0777"
+     ansible all -m shell -a "ls -l"
+     ansible demo -m file -a "path=/home/ansible/new_directory state=directory"  ## Creates a directory on demo hosts
+     ansible demo -m shell -a "ls -l"
+     ansible all -m shell -a "ls -l"
+     ansible mallick -m file -a "path=/home/ansible/index.html state=absent"   ## Removes a file on mallick hosts
+     ansible mallick -m shell -a "ls -l"
      ```
 6. **Yum Module**
    - Manages packages on RHEL-based systems.
