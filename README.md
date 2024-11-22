@@ -127,9 +127,3 @@ Ansible Vault is a powerful tool to securely manage sensitive data such as passw
      ```
 
 ---
-
-## Example Workflow
-
-1. **Encrypt a File**:
-   ```bash
-   ansible-vault encrypt credentials.yml
