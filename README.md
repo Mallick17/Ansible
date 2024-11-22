@@ -15,6 +15,7 @@
   | ```su - ansible```                 | ```su - ansible```                    |
   | ```ssh worker node Private IP```<br>password:```1234```       |                          |
 
+---
  # Generating SSH Key and Setting Up Access
 
 Follow these steps to generate an SSH key on the Ansible-Master and set up access to the Worker node.
@@ -65,3 +66,5 @@ Open a terminal on the Ansible-Master and execute the following command:
   ```sh
   ansible demo -m ping
 ```
+---
+# Encryption & Decryption of Scripts
