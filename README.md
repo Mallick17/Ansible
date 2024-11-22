@@ -176,8 +176,8 @@ ansible <target> -m <module> -a "<arguments>" [options]
 9. **User Module**
     - Manages user accounts
       ```ini
-      ansible all -m user -a "name=newuser state=present"        ## Creates a new user on all hosts
-      ansible mallick -m user -a "name=olduser state=absent"     ## Deletes a user on mallick hosts
+      ansible all -b -m user -a "name=newuser state=present"        ## Creates a new user on all hosts
+      ansible mallick -b -m user -a "name=newuser state=absent"     ## Deletes a user on mallick hosts
       ```
 10. **Setup Module**
     - Gathers facts about remote hosts.
