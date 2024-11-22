@@ -135,6 +135,7 @@ ansible <target> -m <module> -a "<arguments>" [options]
      [ansible@master ~]$vi local.txt
      ansible all -b -m copy -a "src=/home/ansible/local.txt dest=/home/ansible/ansiblefolder/local.txt"
      ansible demo -m copy -a "src=local.txt dest=/home/ansible/codedeploy/local.txt"         ## Copies 'local.txt' to demo hosts
+     ansible all -m shell -a "ls -l"
      ```
 5. **File Module**
    - Manages file and directory properties.
