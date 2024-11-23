@@ -241,9 +241,6 @@ ansible-playbook stophttpd.yml
 - name: Install Docker and Docker Compose
   hosts: all
   become: true
-  vars:
-    docker_install_script: "/home/ansible/dockerinstall.sh"
-
   tasks:
     - name: Run Docker installation script
       command: "sh /home/ansible/dockerinstall.sh"
