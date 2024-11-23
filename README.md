@@ -202,8 +202,64 @@ ansible-playbook stophttpd.yml
   - The handler restarts Nginx to apply the changes.
 ---
 
+# Write a script to perform operations with multiple tasks
+## Task-1 Install git and clone any projects
+```yaml
+---
+- name: Install Git and Clone Repository on Amazon Linux
+  hosts: all
+  become: yes
+  connection: ssh
+  become: true
+  vars:
+    repo_url: "https://github.com/Mallick17/sobha_2.0.git"
+    dest_dir: "/home/ansible/"
 
+  tasks:
+    - name: Ensure Git is installed
+      yum:
+        name: git
+        state: present
 
+    - name: Create destination directory
+      file:
+        path: "{{ dest_dir }}"
+        state: directory
+        mode: '0755'
+
+    - name: Clone the Git repository
+      git:
+        repo: "{{ repo_url }}"
+        dest: "{{ dest_dir }}"
+        version: master
+        force: yes
+```
+---
+## Task-2 Ansible Playbook: Install Docker, Pull Nginx Image, and Run Nginx Container
+```yaml
+---
+- name: Install Docker and Docker Compose
+  hosts: all
+  become: true
+  vars:
+    docker_install_script: "/home/ansible/dockerinstall.sh"
+
+  tasks:
+    - name: Run Docker installation script
+      command: "sh /home/ansible/dockerinstall.sh"
+
+    - name: Verify Docker installation
+      command: "docker --version"
+
+    - name: Verify Docker Compose installation
+      command: "docker-compose --version"
+
+    - name: Pull the Nginx Docker image
+      command: docker pull nginx
+
+    - name: Run Nginx container on port 8000
+      command: docker run -it -d -p 8000:8000 nginx
+```
 
 
 
