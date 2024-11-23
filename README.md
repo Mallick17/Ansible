@@ -257,11 +257,53 @@ ansible-playbook stophttpd.yml
     - name: Run Nginx container on port 8000
       command: docker run -it -d -p 8000:8000 nginx
 ```
+## Task-3 Ansible Playbook: Install Jenkins Using a Shell Script
+```yaml
+---
+- name: Install Jenkins on Worker Node
+  hosts: all
+  become: true
 
+  tasks:
+    - name: Copy Jenkins installation script
+      copy:
+        src: "/home/ansible/jenkinsinstall.sh"
+        dest: "/home/ansible/jenkinsinstall.sh"
 
+    - name: Execute Jenkins installation script
+      command: "sh /home/ansible/jenkins_install.sh"
+```
+---
+## Task-4 Ansible Playbook: Install and Start Tomcat on Worker Node
+```yaml
+---
+- name: Install and Start Tomcat on Worker Node
+  hosts: all
+  become: true
 
+  tasks:
+    - name: Install Java (required for Tomcat)
+      yum:
+        name: java-1.8.0-openjdk
+        state: present
 
+    - name: Download Tomcat
+      get_url:
+        url: "https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.97/bin/apache-tomcat-9.0.97.tar.gz"
+        dest: "/home/ansible/apache-tomcat.tar.gz"
 
+    - name: Extract Tomcat tarball
+      unarchive:
+        src: "/home/ansible/apache-tomcat.tar.gz"
+        dest: "/home/ansible/"
+        remote_src: yes
+
+    - name: Start Tomcat service
+      shell: "/home/ansible/apache-tomcat-9.0.97/bin/startup.sh"
+      args:
+        chdir: "/home/ansible/apache-tomcat-9.0.97/bin"
+```
+---
 
 
 
