@@ -1,0 +1,29 @@
+---
+- name: Install Git and Clone Repository on Amazon Linux
+  hosts: all
+  become: yes
+  connection: ssh
+  become: true
+  vars:
+    repo_url: "https://github.com/Mallick17/sobha_2.0.git"
+    dest_dir: "/home/ansible/"
+
+  tasks:
+    - name: Ensure Git is installed
+      yum:
+        name: git
+        state: present
+
+    - name: Create destination directory
+      file:
+        path: "{{ dest_dir }}"
+        state: directory
+        mode: '0755'
+
+    - name: Clone the Git repository
+      git:
+        repo: "{{ repo_url }}"
+        dest: "{{ dest_dir }}"
+        version: master
+        force: yes
+

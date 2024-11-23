@@ -1,0 +1,22 @@
+---
+- name: Install Docker and Docker Compose
+  hosts: all
+  become: true
+  vars:
+    docker_install_script: "/home/ansible/dockerinstall.sh"
+
+  tasks:
+    - name: Run Docker installation script
+      command: "sh /home/ansible/dockerinstall.sh"
+
+    - name: Verify Docker installation
+      command: "docker --version"
+
+    - name: Verify Docker Compose installation
+      command: "docker-compose --version"
+
+    - name: Pull the Nginx Docker image
+      command: docker pull nginx
+
+    - name: Run Nginx container on port 8000
+      command: docker run -it -d -p 8000:8000 nginx

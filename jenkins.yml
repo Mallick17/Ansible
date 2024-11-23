@@ -1,0 +1,14 @@
+---
+- name: Install Jenkins on Worker Node
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Copy Jenkins installation script
+      copy:
+        src: "/home/ansible/jenkinsinstall.sh"
+        dest: "/home/ansible/jenkinsinstall.sh"
+   
+    - name: Execute Jenkins installation script
+      command: "sh /home/ansible/jenkins_install.sh"
+

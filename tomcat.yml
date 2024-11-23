@@ -1,0 +1,27 @@
+---
+- name: Install and Start Tomcat on Worker Node
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Install Java (required for Tomcat)
+      yum:
+        name: java-1.8.0-openjdk
+        state: present
+
+    - name: Download Tomcat
+      get_url:
+        url: "https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.97/bin/apache-tomcat-9.0.97.tar.gz"
+        dest: "/home/ansible/apache-tomcat.tar.gz"
+
+    - name: Extract Tomcat tarball
+      unarchive:
+        src: "/home/ansible/apache-tomcat.tar.gz"
+        dest: "/home/ansible/"
+        remote_src: yes
+
+    - name: Start Tomcat service
+      shell: "/home/ansible/apache-tomcat-9.0.97/bin/startup.sh"
+      args:
+        chdir: "/home/ansible/apache-tomcat-9.0.97/bin"
+
